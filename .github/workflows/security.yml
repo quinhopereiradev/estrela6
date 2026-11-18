@@ -15,7 +15,7 @@ jobs:
     name: Dependências vulneráveis
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
@@ -34,7 +34,7 @@ jobs:
     name: Segredos no código (gitleaks)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - uses: gitleaks/gitleaks-action@v2
@@ -47,5 +47,5 @@ jobs:
     container:
       image: semgrep/semgrep
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: semgrep scan --config p/php --config p/laravel --config p/secrets --error --exclude docs/reference --exclude vendor --exclude node_modules
