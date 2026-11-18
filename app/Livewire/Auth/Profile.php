@@ -32,6 +32,8 @@ class Profile extends Component
         /** @var User $user */
         $user = Auth::user();
 
+        $this->authorize('update', $user);
+
         $this->validate([
             'nickname' => ['required', 'regex:/^[a-z0-9_]{3,20}$/i', Rule::unique('users', 'name')->ignore($user->id)],
         ]);
@@ -49,6 +51,8 @@ class Profile extends Component
     {
         /** @var User $user */
         $user = Auth::user();
+
+        $this->authorize('delete', $user);
 
         Auth::logout();
 
