@@ -23,8 +23,9 @@ use SensitiveParameter;
  * @property array<string>|null $app_authentication_recovery_codes
  * @property Carbon|null $age_confirmed_at
  * @property Carbon|null $terms_accepted_at
+ * @property array<string, bool>|null $spoiler_overrides
  */
-#[Fillable(['name', 'email', 'password', 'cite_name'])]
+#[Fillable(['name', 'email', 'password', 'cite_name', 'spoiler_preset', 'spoiler_overrides'])]
 #[Hidden(['password', 'remember_token', 'app_authentication_secret', 'app_authentication_recovery_codes'])]
 class User extends Authenticatable implements FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasEmailAuthentication
 {
@@ -91,6 +92,7 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
             'age_confirmed_at' => 'datetime',
             'terms_accepted_at' => 'datetime',
             'cite_name' => 'boolean',
+            'spoiler_overrides' => 'array',
         ];
     }
 }

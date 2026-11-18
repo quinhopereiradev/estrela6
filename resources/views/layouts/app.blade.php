@@ -36,6 +36,8 @@
                 <a href="{{ route('home') }}#mapa" class="nav-link hidden sm:inline-flex">{{ __('layout.nav.map') }}</a>
                 <a href="{{ route('home') }}#radio" class="nav-link hidden sm:inline-flex">{{ __('layout.nav.radio') }}</a>
 
+                <div id="spoiler-shield-slot" class="contents"></div>
+
                 @auth
                     <a href="{{ route('profile') }}" class="ml-1 flex items-center gap-2 rounded-full border border-zinc-700 py-1 pl-1 pr-2 transition hover:border-zinc-500">
                         @if (auth()->user()->avatar_url)
@@ -75,6 +77,8 @@
     <main id="conteudo" class="pt-16">
         @yield('content')
     </main>
+
+    <livewire:spoilers.preferences />
 
     @livewireScripts
 </body>
