@@ -16,9 +16,18 @@
             {{ __('home.status') }}
         </p>
 
-        <div class="mt-8 flex items-center justify-center gap-3">
-            <button type="button" class="btn-neon">{{ __('home.cta_login') }}</button>
-        </div>
+        @guest
+            <div class="mt-8 flex items-center justify-center gap-3">
+                <button
+                    type="button"
+                    class="btn-neon"
+                    x-data
+                    @click="$store.auth.open = true; window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })"
+                >
+                    {{ __('home.cta_login') }}
+                </button>
+            </div>
+        @endguest
     </section>
 
     <section class="mx-auto grid max-w-5xl gap-6 px-4 pb-24 sm:grid-cols-3">

@@ -56,11 +56,11 @@
                         </button>
                     </form>
                 @else
-                    <div class="relative ml-1" x-data="{ open: false }" @click.outside="open = false">
-                        <button type="button" @click="open = !open" class="rounded-md border border-neon/60 bg-neon/15 px-3 py-1.5 text-xs font-semibold text-neon transition hover:bg-neon/25">
+                    <div class="relative ml-1" x-data @click.outside="$store.auth.open = false">
+                        <button type="button" @click="$store.auth.open = !$store.auth.open" class="rounded-md border border-neon/60 bg-neon/15 px-3 py-1.5 text-xs font-semibold text-neon transition hover:bg-neon/25">
                             {{ __('auth.enter') }}
                         </button>
-                        <div x-show="open" x-cloak class="glass-card absolute right-0 top-full mt-2 w-56 space-y-2 p-3">
+                        <div x-show="$store.auth.open" x-cloak class="glass-card absolute right-0 top-full mt-2 w-56 space-y-2 p-3">
                             <a href="{{ route('auth.redirect', 'discord') }}" class="block rounded-lg border border-[#5865F2]/50 bg-[#5865F2]/15 py-2 text-center text-sm font-semibold text-white transition hover:brightness-110">
                                 {{ __('auth.enter_with', ['provider' => 'Discord']) }}
                             </a>
