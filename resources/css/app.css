@@ -1,11 +1,146 @@
 @import 'tailwindcss';
 
+@import '@fontsource/anton/latin-400.css';
+@import '@fontsource/chakra-petch/latin-400.css';
+@import '@fontsource/chakra-petch/latin-500.css';
+@import '@fontsource/chakra-petch/latin-600.css';
+@import '@fontsource/chakra-petch/latin-700.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/latin-700.css';
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-neon: #ff007f;
+    --color-cyber: #00f0ff;
+    --color-sunset: #ff5e00;
+    --color-vc-bg: #09090b;
+
+    --font-sans: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Anton', Impact, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --shadow-neon: 0 0 20px -4px var(--color-neon);
+}
+
+@layer base {
+    html {
+        color-scheme: dark;
+    }
+
+    body {
+        background: var(--color-vc-bg);
+    }
+
+    ::selection {
+        background: var(--color-neon);
+        color: #fff;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-cyber);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply rounded-xl border border-pink-500/30 bg-black/60 backdrop-blur-md transition-all duration-300;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    button.glass-card:hover,
+    a.glass-card:hover {
+        @apply -translate-y-0.5 border-pink-500/60;
+        box-shadow:
+            0 0 28px -10px #ff007f,
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .glow-pink {
+        text-shadow:
+            0 0 12px rgba(255, 0, 127, 0.7),
+            0 0 30px rgba(255, 0, 127, 0.35);
+    }
+
+    .glow-cyan {
+        text-shadow:
+            0 0 12px rgba(0, 240, 255, 0.65),
+            0 0 30px rgba(0, 240, 255, 0.3);
+    }
+
+    .nav-link {
+        @apply relative inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-wide text-zinc-400 transition-colors hover:text-white;
+    }
+
+    .nav-link--active {
+        @apply text-white;
+    }
+
+    .nav-link--active::after {
+        content: '';
+        @apply absolute -bottom-[13px] left-3 right-3 h-0.5 bg-neon;
+        box-shadow: 0 0 10px #ff007f;
+    }
+
+    .btn-neon {
+        @apply rounded-lg bg-neon px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white shadow-neon transition hover:brightness-110;
+    }
+
+    .btn-ghost {
+        @apply rounded-lg border border-zinc-700 px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-zinc-300 transition hover:border-zinc-500 hover:text-white;
+    }
+}
+
+/* Barra de rolagem: trilho escuro, alça neon com brilho */
+:root {
+    accent-color: var(--color-neon);
+    caret-color: var(--color-neon);
+}
+
+@-moz-document url-prefix() {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-neon) rgba(255, 255, 255, 0.04);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-neon), color-mix(in srgb, var(--color-neon) 55%, var(--color-sunset)));
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 8px var(--color-neon);
+    border-width: 1px;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+    display: none;
+    background: transparent;
+}
+
+html::-webkit-scrollbar {
+    width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+    background: #07070b;
 }
