@@ -78,8 +78,12 @@ jobs:
         run: vendor/bin/pest --parallel --coverage --min=70 --exclude-group=browser
       - name: Pest browser (fluxos críticos)
         run: |
-          npx playwright install --with-deps chromium
-          vendor/bin/pest --group=browser
+          if find tests/Browser -name '*.php' -print -quit 2>/dev/null | grep -q .; then
+            npx playwright install --with-deps chromium
+            vendor/bin/pest --group=browser
+          else
+            echo "Nenhum teste em tests/Browser ainda — pulando."
+          fi
 
   frontend:
     name: Front-end (build e lint)
