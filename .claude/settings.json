@@ -28,7 +28,11 @@
     ],
     "deny": [
       "Read(./.env)",
-      "Read(./.env.*)",
+      "Read(./.env.local)",
+      "Read(./.env.production)",
+      "Read(./.env.staging)",
+      "Read(./.env.testing)",
+      "Read(./.env.backup)",
       "Read(./storage/app/private/**)",
       "Bash(git push --force:*)",
       "Bash(git push -f:*)",
