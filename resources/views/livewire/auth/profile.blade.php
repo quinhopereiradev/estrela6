@@ -40,7 +40,7 @@
                 type="button"
                 wire:click="deleteAccount"
                 wire:confirm="{{ __('auth.profile.delete_confirm_body') }}"
-                class="font-mono text-xs text-neon underline"
+                class="font-mono text-xs text-neon underline transition-colors hover:text-white"
             >
                 {{ __('auth.profile.delete_account') }}
             </button>

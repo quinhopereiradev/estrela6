@@ -58,6 +58,13 @@ Dev: `pestphp/pest` + plugins (laravel, livewire, arch, browser) · `larastan/la
 | `RADIO_PIPELINE_TOKEN` · `RADIO_AUTO_PUBLISH=false` | integração com a Action da rádio |
 | `GTADB_REPO=rolux/gtadb.org` · `MAP_VERSION` | sincronização do mapa |
 
+### Login social em ambiente local
+O Google rejeita redirect URIs em TLDs reservados para teste (`.test`, `.localhost`, `.example`, `.invalid`) com "Access blocked: doesn't comply with Google's OAuth 2.0 policy" — a única exceção fora de domínio público é `http://localhost`. Como o Herd serve o projeto em `https://estrela6.test`, duas opções para testar o login social localmente:
+1. Trocar `APP_URL` para `http://localhost:8000`, subir com `php artisan serve` e cadastrar `http://localhost:8000/auth/{provider}/callback` como redirect URI extra no Google Cloud Console / Discord Developer Portal — mais rápido para um teste pontual.
+2. Usar o **Herd Share** (clique direito no site, no app do Herd) para expor `estrela6.test` num domínio público temporário, e cadastrar esse domínio como redirect URI — mantém o fluxo igual ao de produção.
+
+Em produção (`estrela6.com.br`), domínio público normal, isso nunca é um problema.
+
 ## Organização do código
 ```
 app/Domain/<Contexto>/{Actions,Data,Enums,Events,Listeners,Models,Policies,Support}
