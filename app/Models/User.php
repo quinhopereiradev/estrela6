@@ -16,12 +16,15 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use SensitiveParameter;
 
 /**
  * @property array<string>|null $app_authentication_recovery_codes
+ * @property Carbon|null $age_confirmed_at
+ * @property Carbon|null $terms_accepted_at
  */
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'cite_name'])]
 #[Hidden(['password', 'remember_token', 'app_authentication_secret', 'app_authentication_recovery_codes'])]
 class User extends Authenticatable implements FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasEmailAuthentication
 {
@@ -46,7 +49,7 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
 
     public function getAppAuthenticationHolderName(): string
     {
-        return $this->email;
+        return $this->email ?? $this->name;
     }
 
     public function getAppAuthenticationRecoveryCodes(): ?array
@@ -85,6 +88,9 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
             'app_authentication_secret' => 'encrypted',
             'app_authentication_recovery_codes' => 'encrypted:array',
             'has_email_authentication' => 'boolean',
+            'age_confirmed_at' => 'datetime',
+            'terms_accepted_at' => 'datetime',
+            'cite_name' => 'boolean',
         ];
     }
 }
