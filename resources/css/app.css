@@ -49,6 +49,17 @@
         outline-offset: 2px;
         border-radius: 4px;
     }
+
+    /* Regra 8 do CLAUDE.md: tudo que for clicável tem cursor-pointer. */
+    a[href]:not([aria-disabled='true']),
+    button:not(:disabled),
+    [role='button']:not([aria-disabled='true']),
+    label,
+    select,
+    summary,
+    [wire\:click] {
+        cursor: pointer;
+    }
 }
 
 @layer components {
