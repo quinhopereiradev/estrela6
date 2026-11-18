@@ -33,6 +33,7 @@
 
     html {
         color-scheme: dark;
+        cursor: url('../images/cursors/default.png') 3 3, auto;
     }
 
     body {
@@ -58,7 +59,7 @@
     select,
     summary,
     [wire\:click] {
-        cursor: pointer;
+        cursor: url('../images/cursors/pointer.png') 13 2, pointer;
     }
 }
 
@@ -140,7 +141,7 @@ input[type='radio'] {
     background: rgba(0, 0, 0, 0.5);
     display: inline-grid;
     place-content: center;
-    cursor: pointer;
+    cursor: url('../images/cursors/pointer.png') 13 2, pointer;
     transition:
         border-color 0.15s,
         box-shadow 0.15s,
