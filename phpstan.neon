@@ -1,0 +1,15 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - app
+        - config
+        - database
+        - routes
+    excludePaths:
+        - docs/reference
+    treatPhpDocTypesAsCertain: false
+    checkMissingCallableSignature: true
+    # Sem baseline: o projeto começa limpo e continua limpo.

@@ -1,0 +1,90 @@
+{
+  "stations": {
+    "neon": {
+      "name": "Neon 104.7",
+      "style": "synthwave, Vice City nightlife, glossy and cocky",
+      "sting": [
+        440,
+        "saw"
+      ],
+      "voices": {
+        "anchor": [
+          "am_michael",
+          1.02
+        ],
+        "dj": [
+          "am_puck",
+          1.08
+        ],
+        "reporter": [
+          "af_nicole",
+          1.02
+        ]
+      }
+    },
+    "backroad": {
+      "name": "Backroad Country 97.3",
+      "style": "country and folk, warm small-town humor, farms and pickups",
+      "sting": [
+        392,
+        "tri"
+      ],
+      "voices": {
+        "anchor": [
+          "af_bella",
+          0.98
+        ]
+      }
+    },
+    "gulf": {
+      "name": "Gulf Rust 88.1",
+      "style": "rock and metal, industrial port town, gruff and loud",
+      "sting": [
+        330,
+        "sq"
+      ],
+      "voices": {
+        "anchor": [
+          "am_onyx",
+          0.94
+        ]
+      }
+    },
+    "swamp": {
+      "name": "Swamp Static 91.9",
+      "style": "southern blues, swamp mysteries, slow and spooky",
+      "sting": [
+        294,
+        "sin"
+      ],
+      "voices": {
+        "anchor": [
+          "am_michael",
+          1.0
+        ],
+        "dj": [
+          "am_fenrir",
+          0.92
+        ]
+      }
+    },
+    "keys": {
+      "name": "Keys Lounge 101.1",
+      "style": "jazz lounge, island resort, posh and relaxed (British host)",
+      "sting": [
+        523,
+        "tri"
+      ],
+      "voices": {
+        "anchor": [
+          "bf_isabella",
+          0.98
+        ]
+      }
+    }
+  },
+  "ad": [
+    "am_echo",
+    1.15
+  ]
+}

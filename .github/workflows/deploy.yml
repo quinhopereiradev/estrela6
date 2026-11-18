@@ -1,0 +1,89 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]          # merge em main com CI verde → staging
+  push:
+    tags: ['v*']              # tag de release → produção
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options: [staging, production]
+        default: staging
+      action:
+        type: choice
+        options: [deploy, rollback]
+        default: deploy
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.event.inputs.environment || (startsWith(github.ref, 'refs/tags/') && 'production') || 'staging' }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: ${{ github.event.inputs.environment || (startsWith(github.ref, 'refs/tags/') && 'production') || 'staging' }}
+    env:
+      TARGET: ${{ github.event.inputs.environment || (startsWith(github.ref, 'refs/tags/') && 'production') || 'staging' }}
+      ACTION: ${{ github.event.inputs.action || 'deploy' }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
+
+      - name: Chave SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Rollback
+        if: env.ACTION == 'rollback'
+        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "bash /var/www/estrela6/$TARGET/rollback.sh"
+
+      - uses: shivammathur/setup-php@v2
+        if: env.ACTION == 'deploy'
+        with:
+          php-version: '8.4'
+          coverage: none
+      - uses: actions/setup-node@v4
+        if: env.ACTION == 'deploy'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build
+        if: env.ACTION == 'deploy'
+        run: |
+          composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+          npm ci && npm run build
+          rm -rf node_modules tests docs/reference
+          tar -czf release.tgz --exclude=.git .
+
+      - name: Enviar e ativar
+        if: env.ACTION == 'deploy'
+        run: |
+          SHA=$(git rev-parse --short HEAD)
+          DIR=/var/www/estrela6/$TARGET/releases/$SHA
+          scp release.tgz ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/tmp/release-$SHA.tgz
+          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "mkdir -p $DIR && tar -xzf /tmp/release-$SHA.tgz -C $DIR && rm /tmp/release-$SHA.tgz && bash $DIR/tools/deploy/activate.sh $TARGET $DIR"
+
+      - name: Smoke test
+        if: env.ACTION == 'deploy'
+        run: |
+          BASE="${{ vars.APP_URL }}"
+          for path in /up / /mapa /map/meta.json; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -u "${{ secrets.STAGING_BASIC_AUTH }}" "$BASE$path")
+            echo "$path → $code"
+            [ "$code" = "200" ] || { ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "bash /var/www/estrela6/$TARGET/rollback.sh"; exit 1; }
+          done

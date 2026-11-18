@@ -1,0 +1,24 @@
+name: Bug
+description: Algo não funciona como deveria
+labels: [bug]
+body:
+  - type: textarea
+    id: oque
+    attributes: { label: O que aconteceu }
+    validations: { required: true }
+  - type: textarea
+    id: passos
+    attributes: { label: Passos para reproduzir, value: "1.\n2.\n3." }
+    validations: { required: true }
+  - type: textarea
+    id: esperado
+    attributes: { label: O que era esperado }
+  - type: dropdown
+    id: severidade
+    attributes:
+      label: Severidade
+      options: ["Alta: spoiler vazado, segurança, dados ou site fora do ar", "Média: funcionalidade quebrada", "Baixa: visual ou texto"]
+    validations: { required: true }
+  - type: input
+    id: ambiente
+    attributes: { label: Navegador / dispositivo }

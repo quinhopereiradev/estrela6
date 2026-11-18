@@ -1,0 +1,284 @@
+{
+ "neon": [
+  {
+   "id": "neon-news-1",
+   "title": "Six Star News Flash",
+   "url": "news/neon-news-1.mp3",
+   "duration": 54.1,
+   "transcript": [
+    {
+     "who": "anchor",
+     "text": "This is the Six Star News desk on Neon, one oh four point seven. I'm Chad Harlow, and yes, the hair is real."
+    },
+    {
+     "who": "anchor",
+     "text": "Top story. The new trailer shows Vice City after dark, and viewers say the night cycle looks gorgeous. Local residents say it looks exactly like their electricity bill."
+    },
+    {
+     "who": "flamingo",
+     "text": "DJ Flamingo here, live from Ocean Drive. Chad, the neon is so bright tonight my sunglasses asked for sunglasses."
+    },
+    {
+     "who": "anchor",
+     "text": "Thank you, Flamingo. In other news, a new fan theory says radio stations change depending on where you are on the map. This station would like to remind you that we are everywhere. Like humidity."
+    },
+    {
+     "who": "ad",
+     "text": "This bulletin was brought to you by Glow Juice. The energy drink that makes you see sounds. Glow Juice. Side effects include more neon."
+    },
+    {
+     "who": "anchor",
+     "text": "That's the news. Stay shiny, Vice City."
+    }
+   ]
+  },
+  {
+   "id": "neon-news-2",
+   "title": "Rush Hour Report",
+   "url": "news/neon-news-2.mp3",
+   "duration": 48.6,
+   "transcript": [
+    {
+     "who": "anchor",
+     "text": "Six Star News, rush hour edition. Traffic on the Causeway is moving at the speed of a tourist reading a map."
+    },
+    {
+     "who": "anchor",
+     "text": "The countdown to launch is almost over, and the official release date is still holding steady. Our newsroom has been refreshing the page so hard the button is now concave."
+    },
+    {
+     "who": "reporter",
+     "text": "Reporting from Port Gellhorn, where the community just shared its most chaotic police chase yet. Witnesses describe it as, quote, a lot of sirens and one very confident shopping cart."
+    },
+    {
+     "who": "anchor",
+     "text": "Remember, if it's not on the official channels, it's a rumor. If it's on a napkin, it's a napkin."
+    },
+    {
+     "who": "anchor",
+     "text": "Back to the music. This is Neon."
+    }
+   ]
+  }
+ ],
+ "kalaga": [
+  {
+   "id": "kalaga-news-1",
+   "title": "Farm Breakfast Bulletin",
+   "url": "news/kalaga-news-1.mp3",
+   "duration": 45.3,
+   "transcript": [
+    {
+     "who": "dolly",
+     "text": "Mornin', Backroad Country. Dolly Pines with the farm breakfast bulletin, fresh as a biscuit and twice as warm."
+    },
+    {
+     "who": "dolly",
+     "text": "Down in the Keys, somebody drifted the highway for fifteen seconds straight, and the bridge survived. Folks up here have been drifting tractors for years. Nobody filmed it. Rude."
+    },
+    {
+     "who": "dolly",
+     "text": "And there's a new theory that the radio changes depending on where you drive. Well, honey, out here the radio changes when the cow leans on the antenna."
+    },
+    {
+     "who": "ad",
+     "text": "Pine Cone Pickups. Built for mud, priced for mud, smells like mud. Pine Cone Pickups."
+    },
+    {
+     "who": "dolly",
+     "text": "That's the news from the hills, on Six Star radio. Coffee's on, and the next song's for anybody who still has hay in their boots."
+    }
+   ]
+  },
+  {
+   "id": "kalaga-news-2",
+   "title": "Campfire News",
+   "url": "news/kalaga-news-2.mp3",
+   "duration": 30.4,
+   "transcript": [
+    {
+     "who": "dolly",
+     "text": "Evening, friends. Gather 'round the fire for the Backroad campfire news."
+    },
+    {
+     "who": "dolly",
+     "text": "Launch day is just around the bend, and the official details haven't budged. Some of y'all have been counting down so long, your calendars filed a complaint."
+    },
+    {
+     "who": "dolly",
+     "text": "Port Gellhorn reports another wild police chase. Up here on the back roads, our chases are slower. Mostly goats."
+    },
+    {
+     "who": "dolly",
+     "text": "Stay warm, stay kind, and leave the marshmallows for the bears. This is Backroad Country."
+    }
+   ]
+  }
+ ],
+ "gulf": [
+  {
+   "id": "gulf-news-1",
+   "title": "Rust Report",
+   "url": "news/gulf-news-1.mp3",
+   "duration": 34.2,
+   "transcript": [
+    {
+     "who": "earl",
+     "text": "Big Earl here with the Gulf Rust report. If it ain't loud, it ain't news."
+    },
+    {
+     "who": "earl",
+     "text": "Port Gellhorn just had its most chaotic police chase yet. The community clip shows three cruisers, one ferry ramp, and zero brakes. Respect."
+    },
+    {
+     "who": "earl",
+     "text": "Meanwhile, Vice City is showing off its fancy night lights in the new trailer. Cute. Over here we have one streetlight, and it's in a long-term relationship with a moth."
+    },
+    {
+     "who": "ad",
+     "text": "Gellhorn Grease. For engines, hinges, and emotional problems. Gellhorn Grease."
+    },
+    {
+     "who": "earl",
+     "text": "That's the rust report. Crank it up."
+    }
+   ]
+  },
+  {
+   "id": "gulf-news-2",
+   "title": "Last Ferry Bulletin",
+   "url": "news/gulf-news-2.mp3",
+   "duration": 24.3,
+   "transcript": [
+    {
+     "who": "earl",
+     "text": "Last ferry bulletin, Gulf Rust, eighty eight point one."
+    },
+    {
+     "who": "earl",
+     "text": "Somebody drifted the Keys Highway for fifteen seconds and the bridge survived. Kid, come to Gellhorn. Our bridges have survived worse. Mostly me."
+    },
+    {
+     "who": "earl",
+     "text": "And the release date? Still official, still standing. Unlike my back."
+    },
+    {
+     "who": "earl",
+     "text": "Ferry leaves in five. Turn it up or get off the dock."
+    }
+   ]
+  }
+ ],
+ "swamp": [
+  {
+   "id": "swamp-news-1",
+   "title": "Gator Watch",
+   "url": "news/swamp-news-1.mp3",
+   "duration": 45.1,
+   "transcript": [
+    {
+     "who": "anchor",
+     "text": "This is Gator Watch, the midday news from Swamp Static, ninety one point nine."
+    },
+    {
+     "who": "static",
+     "text": "Static here. The mist is thick, the frogs are loud, and the news is mostly true."
+    },
+    {
+     "who": "static",
+     "text": "A fan theory says the radio changes with where you are on the map. Down here, the radio changes when the swamp decides. The swamp has opinions."
+    },
+    {
+     "who": "anchor",
+     "text": "Over in Vice City, the new trailer shows the city at night, all neon and glass. Grassrivers residents responded by turning on one lantern. Out of politeness."
+    },
+    {
+     "who": "ad",
+     "text": "Bayou Bug Spray. Because the mosquitoes here have names, and some of them have lawyers. Bayou Bug Spray."
+    },
+    {
+     "who": "static",
+     "text": "Stay off the boardwalk after dark. This has been Gator Watch."
+    }
+   ]
+  },
+  {
+   "id": "swamp-news-2",
+   "title": "Moon Over Hamlet",
+   "url": "news/swamp-news-2.mp3",
+   "duration": 23.6,
+   "transcript": [
+    {
+     "who": "static",
+     "text": "Moon's up over Hamlet. Static with the late swamp report."
+    },
+    {
+     "who": "static",
+     "text": "Launch is near, the official word hasn't changed, and the gators have been notified. They didn't care."
+    },
+    {
+     "who": "static",
+     "text": "Port Gellhorn had a wild police chase. If anybody needs a place to lay low, the swamp has plenty of room and absolutely no snacks."
+    },
+    {
+     "who": "static",
+     "text": "Static out. Mind the mud."
+    }
+   ]
+  }
+ ],
+ "keys": [
+  {
+   "id": "keys-news-1",
+   "title": "Coffee in the Keys",
+   "url": "news/keys-news-1.mp3",
+   "duration": 37.6,
+   "transcript": [
+    {
+     "who": "marina",
+     "text": "Good morning, darlings. Marina Sol with coffee in the Keys, where the sea is warm and the news is gently stirred."
+    },
+    {
+     "who": "marina",
+     "text": "Our big local story. Someone drifted the Keys Highway for fifteen seconds straight, and the bridge survived. The pelicans gave it a seven out of ten. Pelicans are harsh critics."
+    },
+    {
+     "who": "marina",
+     "text": "In Vice City, the new trailer shows the skyline after dark. Lovely. We prefer our nights with a sunset, a hammock, and absolutely no sirens."
+    },
+    {
+     "who": "ad",
+     "text": "Coral Cove Resort. Where the towels are folded into swans and the swans are folded into towels. Coral Cove."
+    },
+    {
+     "who": "marina",
+     "text": "Sip slowly. This is Keys Lounge."
+    }
+   ]
+  },
+  {
+   "id": "keys-news-2",
+   "title": "Sunset Bulletin",
+   "url": "news/keys-news-2.mp3",
+   "duration": 23.7,
+   "transcript": [
+    {
+     "who": "marina",
+     "text": "The sun is setting over the Overseas Highway. Marina Sol, with your sunset bulletin."
+    },
+    {
+     "who": "marina",
+     "text": "Launch is almost here, and the official details remain calm. Unlike the comments section."
+    },
+    {
+     "who": "marina",
+     "text": "A fan theory says the radio follows you across the map. Darling, if we're following you, at least we have good taste in music."
+    },
+    {
+     "who": "marina",
+     "text": "Goodnight from the Keys. Leave the sand where you found it."
+    }
+   ]
+  }
+ ]
+}

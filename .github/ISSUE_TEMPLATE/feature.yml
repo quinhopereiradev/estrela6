@@ -1,0 +1,23 @@
+name: Funcionalidade
+description: Algo novo ou uma mudança de comportamento
+labels: [feature]
+body:
+  - type: textarea
+    id: problema
+    attributes: { label: Problema ou objetivo, description: "Para quem e por quê." }
+    validations: { required: true }
+  - type: textarea
+    id: comportamento
+    attributes: { label: Comportamento esperado, description: "Como deve funcionar. Cite a tela do protótipo, se houver." }
+    validations: { required: true }
+  - type: textarea
+    id: aceite
+    attributes:
+      label: Critérios de aceite
+      value: |
+        - [ ]
+        - [ ] Respeita a proteção contra spoilers (leitor e moderador)
+    validations: { required: true }
+  - type: dropdown
+    id: area
+    attributes: { label: Área, options: [Feed, Mapa, Rádio, Gamificação, Contas, Admin (Filament), Infra, SEO] }

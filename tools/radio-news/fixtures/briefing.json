@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-18",
+  "items": [
+    { "headline_en": "The new trailer shows Vice City after dark, and the night cycle looks gorgeous", "summary_en": "Official trailer footage of the city at night.", "reliability": "oficial", "region": "vice-city", "kind": "post", "spoiler_type": null },
+    { "headline_en": "Someone drifted the Keys Highway for fifteen seconds straight", "summary_en": "Community clip, confirmed by 4 members.", "reliability": "comunidade", "region": "leonida-keys", "kind": "post", "spoiler_type": null },
+    { "headline_en": "A new theory says radio stations change depending on where you are", "summary_en": "Pattern seen in every trailer, unconfirmed.", "reliability": "rumor", "region": null, "kind": "post", "spoiler_type": null },
+    { "headline_en": "FIXTURE: story item that must never be read", "summary_en": "Plot detail.", "reliability": "rumor", "region": null, "kind": "post", "spoiler_type": "historia" },
+    { "headline_en": "FIXTURE: leaked mission list", "summary_en": "Leak.", "reliability": "nao-verificado", "region": null, "kind": "post", "spoiler_type": "leak" }
+  ]
+}

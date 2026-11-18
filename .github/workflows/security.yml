@@ -1,0 +1,51 @@
+name: Segurança
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 9 * * 1'   # toda segunda, 06:17 em São Paulo
+
+permissions:
+  contents: read
+
+jobs:
+  dependencies:
+    name: Dependências vulneráveis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - run: composer install --no-interaction --no-progress --prefer-dist --no-scripts
+      - name: composer audit
+        run: composer audit --no-interaction --abandoned=report
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+      - name: npm audit (produção, alto ou crítico)
+        run: npm audit --omit=dev --audit-level=high
+
+  secrets:
+    name: Segredos no código (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  sast:
+    name: Análise de código (Semgrep)
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v5
+      - run: semgrep scan --config p/php --config p/laravel --config p/secrets --error --exclude docs/reference --exclude vendor --exclude node_modules
