@@ -30,8 +30,12 @@
         @endguest
     </section>
 
-    <section class="mx-auto grid max-w-5xl gap-6 px-4 pb-24 sm:grid-cols-3">
-        @foreach (['feed', 'map', 'radio'] as $section)
+    <section id="feed" class="mx-auto max-w-7xl px-4 pb-8">
+        <livewire:feed.index />
+    </section>
+
+    <section class="mx-auto grid max-w-5xl gap-6 px-4 pb-24 sm:grid-cols-2">
+        @foreach (['map', 'radio'] as $section)
             <article id="{{ $section === 'map' ? 'mapa' : $section }}" class="glass-card p-6">
                 <span class="inline-flex items-center rounded-sm border border-neon bg-neon px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-white shadow-neon">
                     {{ __('home.coming_soon') }}
