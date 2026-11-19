@@ -52,7 +52,7 @@ Dev: `pestphp/pest` + plugins (laravel, livewire, arch, browser) · `larastan/la
 |---|---|
 | `APP_TIMEZONE=America/Sao_Paulo` | grade da rádio, desafios diários |
 | `LAUNCH_AT=2026-11-19T00:00:00-03:00` | contagem do "Dia X" |
-| `FILESYSTEM_DISK=r2` · `R2_ACCESS_KEY_ID` · `R2_SECRET_ACCESS_KEY` · `R2_BUCKET` · `R2_ENDPOINT` · `R2_PUBLIC_URL` | arquivos |
+| `MEDIA_DISK=r2` (produção; local usa `public`) · `R2_ACCESS_KEY_ID` · `R2_SECRET_ACCESS_KEY` · `R2_BUCKET` · `R2_ENDPOINT` · `R2_PUBLIC_URL` | arquivos |
 | `DISCORD_CLIENT_ID/SECRET` · `GOOGLE_CLIENT_ID/SECRET` | login social |
 | `ANTHROPIC_API_KEY` · `AI_DAILY_BUDGET_USD=0.50` | coleta e rascunhos; o job para se passar do orçamento |
 | `RADIO_PIPELINE_TOKEN` · `RADIO_AUTO_PUBLISH=false` | integração com a Action da rádio |
