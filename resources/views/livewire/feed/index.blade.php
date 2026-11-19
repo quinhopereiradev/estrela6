@@ -126,9 +126,9 @@
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($posts as $post)
                 <x-spoiler :item="$post">
-                    <article class="glass-card flex h-full flex-col overflow-hidden">
+                    <a href="{{ route('posts.show', $post->slug) }}" class="glass-card group flex h-full flex-col overflow-hidden">
                         <div class="aspect-video w-full overflow-hidden">
-                            <x-post-cover :post="$post" />
+                            <x-post-cover :post="$post" class="transition-transform duration-700 group-hover:scale-105" />
                         </div>
                         <div class="flex flex-1 flex-col p-4">
                             <div class="mb-2 flex items-center justify-between gap-2">
@@ -146,7 +146,7 @@
                                     {{ $post->published_at?->translatedFormat('d \d\e M') }}
                                 </span>
                             </div>
-                            <h3 class="font-display text-xl uppercase leading-tight text-white">{{ $post->title }}</h3>
+                            <h3 class="font-display text-xl uppercase leading-tight text-white transition-colors group-hover:text-neon">{{ $post->title }}</h3>
                             <p class="mt-1.5 line-clamp-2 text-sm text-zinc-400">{{ $post->excerpt }}</p>
                             <div class="mt-auto flex items-center gap-2 pt-2">
                                 <span
@@ -160,7 +160,7 @@
                                 >{{ mb_strtoupper($post->reliability->label()) }}</span>
                             </div>
                         </div>
-                    </article>
+                    </a>
                 </x-spoiler>
             @endforeach
         </div>
