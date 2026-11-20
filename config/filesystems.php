@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -14,6 +16,19 @@ return [
     */
 
     'default' => env('FILESYSTEM_DISK', 'local'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Media Disk
+    |--------------------------------------------------------------------------
+    |
+    | Disco usado para mídia enviada por usuários (capas de posts, avatares
+    | de pins, etc). Produção usa Cloudflare R2 (disco "r2"); localmente usa
+    | o disco "public" pra não exigir credenciais reais no dia a dia.
+    |
+    */
+
+    'media' => env('MEDIA_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +56,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
@@ -56,6 +71,19 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'r2' => [
+            'driver' => 's3',
+            'key' => env('R2_ACCESS_KEY_ID'),
+            'secret' => env('R2_SECRET_ACCESS_KEY'),
+            'region' => 'auto',
+            'bucket' => env('R2_BUCKET'),
+            'endpoint' => env('R2_ENDPOINT'),
+            'url' => env('R2_PUBLIC_URL'),
+            'use_path_style_endpoint' => false,
             'throw' => false,
             'report' => false,
         ],
