@@ -7,4 +7,9 @@ return [
         'on' => 'Modo seguro ligado',
         'off' => 'Modo seguro desligado',
     ],
+    'pauta' => [
+        'hidden_content' => 'Conteúdo oculto',
+        'approved' => 'Item publicado',
+        'rejected' => 'Item recusado',
+    ],
 ];
