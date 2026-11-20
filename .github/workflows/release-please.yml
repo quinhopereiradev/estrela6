@@ -14,7 +14,7 @@ jobs:
     steps:
       # Mantém um PR "chore(main): release x.y.z" com o CHANGELOG.
       # Ao mergear esse PR, cria a tag vX.Y.Z, que dispara o deploy de produção.
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v5
         with:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}   # PAT fino: tags criadas pelo GITHUB_TOKEN não disparam outros workflows
           release-type: php
