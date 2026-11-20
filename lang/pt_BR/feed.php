@@ -58,5 +58,6 @@ return [
         'card_alt' => 'Cartão de compartilhamento (:format)',
         'copy_link' => 'Copiar link',
         'link_copied' => 'Link copiado!',
+        'spoiler_og_description' => 'Esse conteúdo tem spoiler — abra o link pra decidir se quer saber.',
     ],
 ];

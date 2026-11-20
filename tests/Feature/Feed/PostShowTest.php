@@ -54,3 +54,29 @@ test('raw script tags in the content never reach the response', function (): voi
         ->assertOk()
         ->assertDontSee('<script>alert', false);
 });
+
+test('a safe post has full meta tags and NewsArticle json-ld', function (): void {
+    $post = Post::factory()->published()->create([
+        'title' => 'Rockstar confirma novo trailer',
+        'excerpt' => 'Um resumo qualquer.',
+    ]);
+
+    $this->get(route('posts.show', $post->slug))
+        ->assertOk()
+        ->assertSee('<meta name="description" content="Um resumo qualquer.">', false)
+        ->assertSee('<link rel="canonical" href="'.route('posts.show', $post->slug).'">', false)
+        ->assertSee('"@type":"NewsArticle"', false);
+});
+
+test('a spoiler post never gets a NewsArticle json-ld or its real excerpt in meta tags', function (): void {
+    $post = Post::factory()->published()->create([
+        'title' => 'Vazou o final secreto',
+        'excerpt' => 'Resumo que não devia aparecer nas meta tags',
+        'spoiler_type' => SpoilerType::Leak,
+    ]);
+
+    $this->get(route('posts.show', $post->slug))
+        ->assertOk()
+        ->assertDontSee('NewsArticle')
+        ->assertDontSee('Resumo que não devia aparecer nas meta tags');
+});
