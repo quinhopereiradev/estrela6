@@ -36,7 +36,7 @@ jobs:
           cache: pip
           cache-dependency-path: tools/radio-news/requirements.txt
       - name: Modelo Kokoro (cache)
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/kokoro
           key: kokoro-v1.0
