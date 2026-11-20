@@ -5,7 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? __('layout.brand') }}</title>
 
+    @isset($metaDescription)
+        <meta name="description" content="{{ $metaDescription }}">
+    @endisset
+    @isset($canonical)
+        <link rel="canonical" href="{{ $canonical }}">
+    @endisset
+
+    <meta property="og:site_name" content="{{ __('layout.brand') }}">
+    <meta property="og:title" content="{{ $title ?? __('layout.brand') }}">
+    @isset($metaDescription)
+        <meta property="og:description" content="{{ $metaDescription }}">
+    @endisset
+    <meta property="og:type" content="{{ $ogType ?? 'website' }}">
+    @isset($canonical)
+        <meta property="og:url" content="{{ $canonical }}">
+    @endisset
+    @isset($ogImage)
+        <meta property="og:image" content="{{ $ogImage }}">
+    @endisset
+    <meta name="twitter:card" content="{{ isset($ogImage) ? 'summary_large_image' : 'summary' }}">
+
+    @isset($jsonLd)
+        <script type="application/ld+json">{!! $jsonLd !!}</script>
+    @endisset
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body class="min-h-screen bg-vc-bg font-sans text-white antialiased">
     <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[1100] focus:rounded-md focus:bg-neon focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white">
@@ -34,9 +60,41 @@
                 <a href="{{ route('home') }}#feed" class="nav-link hidden sm:inline-flex">{{ __('layout.nav.feed') }}</a>
                 <a href="{{ route('home') }}#mapa" class="nav-link hidden sm:inline-flex">{{ __('layout.nav.map') }}</a>
                 <a href="{{ route('home') }}#radio" class="nav-link hidden sm:inline-flex">{{ __('layout.nav.radio') }}</a>
-                <button type="button" class="ml-1 rounded-md border border-neon/60 bg-neon/15 px-3 py-1.5 text-xs font-semibold text-neon transition hover:bg-neon/25">
-                    {{ __('layout.login') }}
-                </button>
+
+                <div id="spoiler-shield-slot" class="contents"></div>
+
+                @auth
+                    <a href="{{ route('profile') }}" class="ml-1 flex items-center gap-2 rounded-full border border-zinc-700 py-1 pl-1 pr-2 transition hover:border-zinc-500">
+                        @if (auth()->user()->avatar_url)
+                            <img src="{{ auth()->user()->avatar_url }}" alt="" class="h-6 w-6 rounded-full">
+                        @else
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-neon/20 font-display text-[11px] text-neon">
+                                {{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 1)) }}
+                            </span>
+                        @endif
+                        <span class="text-[11px] text-white">{{ '@'.auth()->user()->name }}</span>
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="ml-1 rounded-md border border-zinc-700 px-3 py-1.5 text-xs font-semibold text-zinc-300 transition hover:border-zinc-500 hover:text-white">
+                            {{ __('auth.logout') }}
+                        </button>
+                    </form>
+                @else
+                    <div class="relative ml-1" x-data @click.outside="$store.auth.open = false">
+                        <button type="button" @click="$store.auth.open = !$store.auth.open" class="rounded-md border border-neon/60 bg-neon/15 px-3 py-1.5 text-xs font-semibold text-neon transition hover:bg-neon/25">
+                            {{ __('auth.enter') }}
+                        </button>
+                        <div x-show="$store.auth.open" x-cloak class="glass-card absolute right-0 top-full mt-2 w-56 space-y-2 p-3">
+                            <a href="{{ route('auth.redirect', 'discord') }}" class="block rounded-lg border border-[#5865F2]/50 bg-[#5865F2]/15 py-2 text-center text-sm font-semibold text-white transition hover:brightness-110">
+                                {{ __('auth.enter_with', ['provider' => 'Discord']) }}
+                            </a>
+                            <a href="{{ route('auth.redirect', 'google') }}" class="block rounded-lg border border-white/40 bg-white/10 py-2 text-center text-sm font-semibold text-white transition hover:brightness-110">
+                                {{ __('auth.enter_with', ['provider' => 'Google']) }}
+                            </a>
+                        </div>
+                    </div>
+                @endauth
             </nav>
         </div>
     </header>
@@ -44,5 +102,9 @@
     <main id="conteudo" class="pt-16">
         @yield('content')
     </main>
+
+    <livewire:spoilers.preferences />
+
+    @livewireScripts
 </body>
 </html>
