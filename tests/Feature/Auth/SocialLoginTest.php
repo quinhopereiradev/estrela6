@@ -42,6 +42,15 @@ test('a new social login redirects to onboarding instead of creating a user righ
     expect(Auth::check())->toBeFalse();
 });
 
+test('the onboarding page shows its content when loaded directly', function (): void {
+    mockSocialiteDriver(fakeSocialiteUser('discord-123'));
+    $this->get('/auth/discord/callback');
+
+    $this->get('/completar-cadastro')
+        ->assertOk()
+        ->assertSee(__('auth.complete_signup_title'));
+});
+
 test('completing onboarding creates the user and logs them in', function (): void {
     mockSocialiteDriver(fakeSocialiteUser('discord-123'));
     $this->get('/auth/discord/callback');

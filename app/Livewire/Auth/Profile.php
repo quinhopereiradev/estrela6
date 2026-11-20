@@ -63,6 +63,6 @@ class Profile extends Component
 
     public function render(): View
     {
-        return view('livewire.auth.profile');
+        return view('livewire.auth.profile')->extends('layouts.app');
     }
 }
