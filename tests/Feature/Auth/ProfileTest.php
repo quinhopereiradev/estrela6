@@ -13,6 +13,15 @@ test('a guest cannot see the profile page', function (): void {
     $this->get('/perfil')->assertRedirect(route('home'));
 });
 
+test('a logged in user sees the profile content when loading the page directly', function (): void {
+    $user = User::factory()->create(['name' => 'quinho']);
+
+    $this->actingAs($user)
+        ->get('/perfil')
+        ->assertOk()
+        ->assertSee('@quinho');
+});
+
 test('a user can update their nickname and cite_name preference', function (): void {
     $user = User::factory()->create(['name' => 'old_name', 'cite_name' => false]);
 

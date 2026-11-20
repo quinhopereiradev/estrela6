@@ -53,6 +53,6 @@ class CompleteSignup extends Component
 
     public function render(): View
     {
-        return view('livewire.auth.complete-signup');
+        return view('livewire.auth.complete-signup')->extends('layouts.app');
     }
 }
