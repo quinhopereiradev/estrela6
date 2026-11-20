@@ -1,0 +1,33 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@import '@fontsource/anton/latin-400.css';
+@import '@fontsource/chakra-petch/latin-400.css';
+@import '@fontsource/chakra-petch/latin-500.css';
+@import '@fontsource/chakra-petch/latin-600.css';
+@import '@fontsource/chakra-petch/latin-700.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/latin-700.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+@layer base {
+    body {
+        background: #0a0a0f;
+    }
+}
+
+.fi-header-heading,
+.fi-simple-header-heading {
+    font-family: 'Anton', Impact, sans-serif;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.fi-topbar {
+    @apply border-b border-pink-500/20 bg-black/80 backdrop-blur-md dark:bg-black/80;
+}
+
+.fi-sidebar {
+    @apply border-e border-pink-500/20 bg-black/60 backdrop-blur-md dark:bg-black/60;
+}
