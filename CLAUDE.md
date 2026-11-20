@@ -54,6 +54,8 @@ Contextos e documentos: Feed → `docs/03-funcionalidades.md#feed` · Mapa → `
 5. **Português correto e acessível na interface**: WCAG 2.2 AA, foco visível, `aria-*` nos controles customizados, `prefers-reduced-motion` respeitado.
 6. **O repositório é público: segredos nunca no código nem no git.** Só em `.env` (local) e GitHub Secrets/servidor. Nunca leia nem imprima o conteúdo de `.env`.
 7. **Desempenho do mapa**: nada de atualizar centenas de marcadores por frame. Siga as técnicas de `docs/03-funcionalidades.md#mapa` (tiles com filtro "assado", hover com polilinha, `_go` em vez de `flyTo`).
+8. **Tudo que for clicável tem `cursor-pointer` e hover.** Qualquer elemento com ação (botão, link, item de lista clicável, ícone com `wire:click`/`@click`) leva `cursor-pointer` e um efeito de hover visível (cor, escala, brilho). Nenhuma área clicável fica com o cursor padrão nem sem feedback ao passar o mouse.
+9. **Visual fluido, não estático — energia de GTA VI com acabamento profissional.** Trocas de estado, hover, abertura de modal etc. usam transição (Tailwind `transition`/`duration`, Alpine `x-transition`), sem saltos bruscos de layout. A estética do jogo (cores, tipografia, texturas do tema) aparece sem virar amador. Regras 8 e 9 sempre respeitam `prefers-reduced-motion` (regra 5) — a versão "reduzida" troca a animação por uma transição instantânea ou quase, nunca remove o feedback.
 
 ## Como escrever código aqui
 
