@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           coverage: none
           tools: composer:v2
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.composer/cache
           key: composer-${{ hashFiles('composer.lock') }}
@@ -57,17 +57,17 @@ jobs:
       DB_USERNAME: root
       DB_PASSWORD: secret
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: mbstring, intl, gd, pdo_mysql, exif
           coverage: pcov
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.composer/cache
           key: composer-${{ hashFiles('composer.lock') }}
@@ -90,18 +90,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           coverage: none
           tools: composer:v2
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.composer/cache
           key: composer-${{ hashFiles('composer.lock') }}
       - run: composer install --no-interaction --no-progress --prefer-dist
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
