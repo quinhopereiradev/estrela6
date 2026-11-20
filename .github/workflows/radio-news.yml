@@ -27,16 +27,16 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: auto
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: tools/radio-news
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: tools/radio-news/requirements.txt
       - name: Modelo Kokoro (cache)
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/kokoro
           key: kokoro-v1.0
