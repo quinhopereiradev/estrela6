@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? __('layout.brand') }}</title>
 
+    @isset($metaDescription)
+        <meta name="description" content="{{ $metaDescription }}">
+    @endisset
+    @isset($canonical)
+        <link rel="canonical" href="{{ $canonical }}">
+    @endisset
+
+    <meta property="og:site_name" content="{{ __('layout.brand') }}">
+    <meta property="og:title" content="{{ $title ?? __('layout.brand') }}">
+    @isset($metaDescription)
+        <meta property="og:description" content="{{ $metaDescription }}">
+    @endisset
+    <meta property="og:type" content="{{ $ogType ?? 'website' }}">
+    @isset($canonical)
+        <meta property="og:url" content="{{ $canonical }}">
+    @endisset
+    @isset($ogImage)
+        <meta property="og:image" content="{{ $ogImage }}">
+    @endisset
+    <meta name="twitter:card" content="{{ isset($ogImage) ? 'summary_large_image' : 'summary' }}">
+
+    @isset($jsonLd)
+        <script type="application/ld+json">{!! $jsonLd !!}</script>
+    @endisset
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
