@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\Feed\ShareCardController;
 use App\Livewire\Auth\CompleteSignup;
 use App\Livewire\Auth\Profile;
+use App\Livewire\Feed\Show as FeedShow;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -12,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn (): Factory|View => view('welcome'))->name('home');
+
+Route::get('/noticias/{slug}', FeedShow::class)->name('posts.show');
+Route::get('/noticias/{slug}/cartao/{formato}.svg', ShareCardController::class)->name('posts.share-card');
 
 Route::middleware('throttle:10,1')->group(function (): void {
     Route::get('/auth/{provider}/redirect', [SocialAuthController::class, 'redirect'])

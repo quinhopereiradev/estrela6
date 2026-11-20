@@ -50,4 +50,13 @@ return [
         'in_leonida' => 'em Leonida',
         'platforms' => 'PS5 e Xbox Series X|S · PC ainda sem data',
     ],
+    'show' => [
+        'back_to_feed' => 'Voltar para o feed',
+        'reliability_box' => 'Selo de confiabilidade',
+        'source' => 'Fonte',
+        'share' => 'Compartilhar',
+        'card_alt' => 'Cartão de compartilhamento (:format)',
+        'copy_link' => 'Copiar link',
+        'link_copied' => 'Link copiado!',
+    ],
 ];

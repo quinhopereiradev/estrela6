@@ -26,6 +26,10 @@ use Illuminate\Support\Facades\Session;
 /**
  * @property Carbon|null $published_at
  * @property SpoilerType|null $spoiler_type
+ * @property PostCategory $category
+ * @property Reliability $reliability
+ * @property PostOrigin $origin
+ * @property PostStatus $status
  */
 #[Fillable([
     'title', 'slug', 'excerpt', 'content', 'headline_en', 'category', 'region_id',
