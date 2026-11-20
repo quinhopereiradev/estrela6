@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Domain\Spoilers\SpoilerPreferenceResolver;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -13,7 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->encryptCookies(except: [
+            SpoilerPreferenceResolver::COOKIE,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
