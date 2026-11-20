@@ -27,8 +27,13 @@
 }
 
 @layer base {
+    [x-cloak] {
+        display: none !important;
+    }
+
     html {
         color-scheme: dark;
+        cursor: url('../images/cursors/default.png') 3 3, auto;
     }
 
     body {
@@ -44,6 +49,17 @@
         outline: 2px solid var(--color-cyber);
         outline-offset: 2px;
         border-radius: 4px;
+    }
+
+    /* Regra 8 do CLAUDE.md: tudo que for clicável tem cursor-pointer. */
+    a[href]:not([aria-disabled='true']),
+    button:not(:disabled),
+    [role='button']:not([aria-disabled='true']),
+    label,
+    select,
+    summary,
+    [wire\:click] {
+        cursor: url('../images/cursors/pointer.png') 13 2, pointer;
     }
 }
 
@@ -94,6 +110,191 @@
     .btn-ghost {
         @apply rounded-lg border border-zinc-700 px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-zinc-300 transition hover:border-zinc-500 hover:text-white;
     }
+
+    .icon-btn {
+        @apply grid h-9 w-9 place-items-center rounded-full text-zinc-300 transition-colors hover:bg-white/10 hover:text-white disabled:opacity-40;
+    }
+
+    .field-label {
+        @apply mb-1.5 block font-mono text-[11px] uppercase tracking-widest text-zinc-400;
+    }
+
+    .field {
+        @apply mb-4 w-full rounded-lg border border-zinc-700 bg-black/60 px-3 py-2 text-sm text-white outline-none transition placeholder:text-zinc-600;
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-1.5 rounded-full border border-zinc-700 px-3 py-1.5 font-mono text-xs uppercase tracking-wide text-zinc-400 transition hover:border-zinc-500 hover:text-white;
+    }
+
+    .chip--active {
+        @apply border-neon/60 bg-neon/15 text-neon hover:border-neon/60 hover:text-neon;
+    }
+
+    .chip-count {
+        @apply rounded-full bg-white/10 px-1.5 text-[10px] text-zinc-300;
+    }
+
+    .tag {
+        @apply rounded-sm border px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider;
+    }
+
+    .tag-cyan {
+        @apply border-cyber/50 bg-cyber/10 text-cyber;
+    }
+
+    .tag-orange {
+        @apply border-sunset/50 bg-sunset/10 text-sunset;
+    }
+
+    .tag-pink {
+        @apply border-neon/50 bg-neon/10 text-neon;
+    }
+
+    .tag-violet {
+        @apply border-violet-400/50 bg-violet-400/10 text-violet-300;
+    }
+
+    .rel-badge {
+        @apply inline-flex items-center gap-1 rounded-sm border px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider;
+    }
+
+    .field:focus {
+        @apply border-cyber;
+        box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15);
+    }
+
+    .post-content {
+        @apply text-base leading-relaxed text-zinc-300;
+    }
+
+    .post-content :is(h1, h2, h3) {
+        @apply mb-3 mt-8 font-display uppercase leading-tight text-white first:mt-0;
+    }
+
+    .post-content h1 {
+        @apply text-3xl;
+    }
+
+    .post-content h2 {
+        @apply text-2xl;
+    }
+
+    .post-content h3 {
+        @apply text-xl;
+    }
+
+    .post-content p {
+        @apply mb-4;
+    }
+
+    .post-content a {
+        @apply text-cyber underline underline-offset-2 transition hover:text-white;
+    }
+
+    .post-content strong {
+        @apply font-semibold text-white;
+    }
+
+    .post-content :is(ul, ol) {
+        @apply mb-4 ml-5 list-outside space-y-1;
+    }
+
+    .post-content ul {
+        @apply list-disc;
+    }
+
+    .post-content ol {
+        @apply list-decimal;
+    }
+
+    .post-content blockquote {
+        @apply my-4 border-l-2 border-neon/50 pl-4 italic text-zinc-400;
+    }
+
+    .post-content :is(code, pre) {
+        @apply rounded bg-black/60 font-mono text-sm;
+    }
+
+    .post-content code {
+        @apply px-1.5 py-0.5;
+    }
+
+    .post-content pre {
+        @apply overflow-x-auto p-4;
+    }
+
+    .post-content pre code {
+        @apply bg-transparent p-0;
+    }
+
+    .post-content img {
+        @apply my-4 rounded-lg border border-zinc-800;
+    }
+}
+
+/* Checkbox e radio nativos */
+input[type='checkbox'],
+input[type='radio'] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin: 0;
+    border: 1.5px solid #52525b;
+    background: rgba(0, 0, 0, 0.5);
+    display: inline-grid;
+    place-content: center;
+    cursor: url('../images/cursors/pointer.png') 13 2, pointer;
+    transition:
+        border-color 0.15s,
+        box-shadow 0.15s,
+        background 0.15s;
+}
+
+input[type='checkbox'] {
+    border-radius: 4px;
+}
+
+input[type='radio'] {
+    border-radius: 50%;
+}
+
+input[type='checkbox']::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    transform: scale(0);
+    transition: transform 0.12s;
+    background: #fff;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type='radio']::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.12s;
+    background: #fff;
+}
+
+input[type='checkbox']:checked,
+input[type='radio']:checked {
+    background: var(--color-neon);
+    border-color: var(--color-neon);
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.55);
+}
+
+input[type='checkbox']:checked::before,
+input[type='radio']:checked::before {
+    transform: scale(1);
+}
+
+input[type='checkbox']:hover,
+input[type='radio']:hover {
+    border-color: var(--color-neon);
 }
 
 /* Barra de rolagem: trilho escuro, alça neon com brilho */

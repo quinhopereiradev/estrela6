@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Domain\Accounts\Enums\Role;
 use Database\Factories\UserFactory;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
@@ -16,12 +17,17 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use SensitiveParameter;
 
 /**
  * @property array<string>|null $app_authentication_recovery_codes
+ * @property Carbon|null $age_confirmed_at
+ * @property Carbon|null $terms_accepted_at
+ * @property array<string, bool>|null $spoiler_overrides
+ * @property Role $role
  */
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'cite_name', 'spoiler_preset', 'spoiler_overrides', 'mod_safe_mode'])]
 #[Hidden(['password', 'remember_token', 'app_authentication_secret', 'app_authentication_recovery_codes'])]
 class User extends Authenticatable implements FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasEmailAuthentication
 {
@@ -30,7 +36,7 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->is_admin;
+        return $this->role->canAccessPanel();
     }
 
     public function getAppAuthenticationSecret(): ?string
@@ -46,7 +52,7 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
 
     public function getAppAuthenticationHolderName(): string
     {
-        return $this->email;
+        return $this->email ?? $this->name;
     }
 
     public function getAppAuthenticationRecoveryCodes(): ?array
@@ -81,10 +87,15 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'is_admin' => 'boolean',
+            'role' => Role::class,
+            'mod_safe_mode' => 'boolean',
             'app_authentication_secret' => 'encrypted',
             'app_authentication_recovery_codes' => 'encrypted:array',
             'has_email_authentication' => 'boolean',
+            'age_confirmed_at' => 'datetime',
+            'terms_accepted_at' => 'datetime',
+            'cite_name' => 'boolean',
+            'spoiler_overrides' => 'array',
         ];
     }
 }
