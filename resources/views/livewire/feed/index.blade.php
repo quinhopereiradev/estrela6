@@ -44,15 +44,16 @@
             </h1>
             <div class="mt-3 flex flex-wrap gap-2">
                 @auth
+                    <button type="button" wire:click="$dispatch('open-article-modal')" class="btn-neon inline-flex items-center gap-1.5 !px-3 !py-1.5 text-xs">✎ {{ __('feed.index.write_article') }}</button>
                     @if (auth()->user()->role->canAccessPanel())
                         <a href="{{ url('/admin') }}" class="btn-ghost inline-flex items-center gap-1.5 !px-3 !py-1.5 text-xs">{{ __('feed.index.admin_shortcut') }}</a>
-                    @else
-                        <p class="font-mono text-[11px] text-zinc-500">{{ __('feed.index.write_soon') }}</p>
                     @endif
                 @else
                     <button type="button" x-data @click="$store.auth.open = true" class="btn-neon inline-flex items-center gap-1.5 !px-3 !py-1.5 text-xs">{{ __('feed.index.guest_cta') }}</button>
                 @endauth
             </div>
+
+            <livewire:feed.article-modal />
         </div>
 
         <div class="flex flex-wrap gap-2" role="tablist" aria-label="{{ __('feed.index.filters_label') }}">
