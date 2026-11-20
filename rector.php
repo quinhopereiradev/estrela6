@@ -2,13 +2,17 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\If_\ExplicitNullableObjectInstanceRector;
 use Rector\Config\RectorConfig;
-use RectorLaravel\Set\LaravelSetProvider;
 
 return RectorConfig::configure()
     ->withPaths([__DIR__.'/app', __DIR__.'/config', __DIR__.'/database', __DIR__.'/routes', __DIR__.'/tests'])
     ->withPhpSets(php84: true)
-    ->withSetProviders(LaravelSetProvider::class)
     ->withComposerBased(laravel: true)
     ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations: true, earlyReturn: true)
-    ->withImportNames(removeUnusedImports: true);
+    ->withImportNames(removeUnusedImports: true)
+    ->withSkip([
+        // Pediria `instanceof App\Models\X` em Controllers, o que violaria a regra de
+        // arquitetura "Controllers não usam Models diretamente" (tests/Arch).
+        ExplicitNullableObjectInstanceRector::class => [__DIR__.'/app/Http/Controllers'],
+    ]);
