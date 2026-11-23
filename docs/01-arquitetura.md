@@ -56,7 +56,7 @@ Dev: `pestphp/pest` + plugins (laravel, livewire, arch, browser) · `larastan/la
 | `DISCORD_CLIENT_ID/SECRET` · `GOOGLE_CLIENT_ID/SECRET` | login social |
 | `ANTHROPIC_API_KEY` · `AI_DAILY_BUDGET_USD=0.50` | coleta e rascunhos; o job para se passar do orçamento |
 | `RADIO_PIPELINE_TOKEN` · `RADIO_AUTO_PUBLISH=false` | integração com a Action da rádio |
-| `GTADB_REPO=rolux/gtadb.org` · `MAP_VERSION` | sincronização do mapa |
+| `LEONIDA_MAP_REPO=rolux/gtadb.org` · `LEONIDA_MAP_BRANCH=main` · `LEONIDA_MAP_TILESET=yanis,17` · `LEONIDA_GITHUB_TOKEN` · `LEONIDA_MAP_AUTO_UPGRADE` · `LEONIDA_MAP_AUTO_PUBLISH` · `LEONIDA_MAP_TILES_XMAX` | sincronização do mapa (`leonida:sync-map`, `config/leonida.php`) |
 
 ### Login social em ambiente local
 O Google rejeita redirect URIs em TLDs reservados para teste (`.test`, `.localhost`, `.example`, `.invalid`) com "Access blocked: doesn't comply with Google's OAuth 2.0 policy" — a única exceção fora de domínio público é `http://localhost`. Como o Herd serve o projeto em `https://estrela6.test`, duas opções para testar o login social localmente:
